@@ -108,13 +108,13 @@ Each topic folder contains either:
 
 ---
 
-## 🚀 Getting Started
+## 🚀 How to Run
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/rhalbhavi/Python-Programming-and-Tkinter.git
-cd Python-Programming-and-Tkinter
+git clone https://github.com/rhalbhavi/62Days-CodeSprint-WebDev-Challenge/tree/main/Project/HTML%2CCSS%2CJS/Ultimate%20Python%20Repository.git
+cd Ultimate-Python-Repository
 ```
 
 ### 2. Regenerate the File Manifest (Optional)
