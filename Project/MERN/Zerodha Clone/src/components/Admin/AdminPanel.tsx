@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Users, TrendingUp, Activity, Eye, DollarSign, Clock } from 'lucide-react';
+import { Users, TrendingUp, Activity, DollarSign } from 'lucide-react';
 import { useTrading } from '../../context/TradingContext';
 
 const AdminPanel: React.FC = () => {
-  const { stocks, holdings, transactions } = useTrading();
+  const { stocks, transactions } = useTrading();
   const [activeTab, setActiveTab] = useState('overview');
 
   const totalUsers = 1250; // Mock data

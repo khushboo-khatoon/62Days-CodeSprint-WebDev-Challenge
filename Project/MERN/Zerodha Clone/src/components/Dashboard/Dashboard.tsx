@@ -1,11 +1,11 @@
 import React from 'react';
-import { TrendingUp, TrendingDown, DollarSign, Activity, Eye, Star } from 'lucide-react';
+import { TrendingUp, TrendingDown, DollarSign, Activity, Eye } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTrading } from '../../context/TradingContext';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
-  const { holdings, marketIndices, stocks, watchlist } = useTrading();
+  const { holdings, marketIndices, stocks } = useTrading();
 
   const totalPortfolioValue = holdings.reduce((sum, holding) => sum + holding.totalValue, 0);
   const totalInvestment = holdings.reduce((sum, holding) => sum + (holding.quantity * holding.averagePrice), 0);
