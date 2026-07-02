@@ -279,7 +279,11 @@ function applyTheme(theme) {
     document.documentElement.removeAttribute("data-theme");
     themeToggle.textContent = "🌙";
   }
-  localStorage.setItem("typingTestTheme", theme);
+  try {
+      localStorage.setItem("typingTestTheme", theme)
+  } catch (e) {
+      // localStorage unavailable (e.g. Safari Private Mode) — silently ignore
+  }
 }
 
 themeToggle.addEventListener("click", () => {
@@ -289,7 +293,12 @@ themeToggle.addEventListener("click", () => {
 
 // Load saved theme or fall back to system preference
 (function initTheme() {
-  const savedTheme = localStorage.getItem("typingTestTheme");
+  let savedTheme = null;
+ try {
+     savedTheme = localStorage.getItem("typingTestTheme");
+ } catch (e) {
+     // localStorage unavailable (e.g. Safari Private Mode) — silently ignore
+ }
   if (savedTheme) {
     applyTheme(savedTheme);
   } else {

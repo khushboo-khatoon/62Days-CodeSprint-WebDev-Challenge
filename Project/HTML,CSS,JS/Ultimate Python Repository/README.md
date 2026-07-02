@@ -17,9 +17,9 @@
 
 ---
 
-## 🔗 Live Site — [GitHub Pages](https://rhalbhavi.github.io/ultimate-python-repository.github.io/)
+## 🔗 Live Site — [GitHub Pages](https://riyahal.github.io/ultimate-python-repository.github.io/)
 
-- **Source Repository** — [github.com/rhalbhavi/Python-Programming-and-Tkinter](https://github.com/rhalbhavi/Python-Programming-and-Tkinter)
+- **Source Repository** — [github.com/riyahal/Python-Programming-and-Tkinter](https://github.com/riyahal/Python-Programming-and-Tkinter)
 
 ---
 
@@ -27,7 +27,7 @@
 
 **This website aims to be a learning and reference material for beginners and developers who are exploring and utilizing Python. It showcases 200+ well-documented programs and tons of examples across all sub-topics.**
 
-The site serves as a **visual, interactive documentation platform** for the [Python-Programming-and-Tkinter](https://github.com/rhalbhavi/Python-Programming-and-Tkinter) repository. Instead of browsing raw files on GitHub, you get:
+The site serves as a **visual, interactive documentation platform** for the [Python-Programming-and-Tkinter](https://github.com/riyahal/Python-Programming-and-Tkinter) repository. Instead of browsing raw files on GitHub, you get:
 
 - **Syntax-highlighted Python code** rendered directly from the source files
 - **Rendered Markdown guides** for conceptual topics

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Search, Bell, User, Menu, X } from 'lucide-react';
+import { Search, Bell, User, Menu } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTrading } from '../../context/TradingContext';
+import { Stock } from '../../types';
 
 interface HeaderProps {
   onMenuToggle: () => void;
-  currentPage: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMenuToggle, currentPage }) => {
+const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
   const { user, logout } = useAuth();
   const { searchStocks } = useTrading();
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Stock[]>([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 

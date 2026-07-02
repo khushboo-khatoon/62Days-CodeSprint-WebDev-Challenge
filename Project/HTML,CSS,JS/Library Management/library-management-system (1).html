@@ -977,7 +977,16 @@ function addBook() {
   const title = document.getElementById('bTitle').value.trim();
   const author = document.getElementById('bAuthor').value.trim();
   if(!title||!author) { toast('Title and author are required.','red'); return; }
-  books.push({ id:nextBId++, title, author, isbn:document.getElementById('bISBN').value.trim(), genre:document.getElementById('bGenre').value, copies:parseInt(document.getElementById('bCopies').value)||1, year:document.getElementById('bYear').value||'' });
+
+  const isbn = document.getElementById('bISBN').value.trim();
+  const isbnRegex = /^(97[89][-\s]?)\d{1,5}[-\s]?\d{1,7}[-\s]?\d{1,6}[-\s]?\d$/;
+  if(isbn && !isbnRegex.test(isbn)) { toast('Invalid ISBN format. Use 13-digit ISBN format.','red'); return; }
+
+  const year = document.getElementById('bYear').value.trim();
+  const currentYear = new Date().getFullYear();
+  if(year && (isNaN(year) || year < 1000 || year > currentYear)) { toast(`Year must be a valid number between 1000 and ${currentYear}.`,'red'); return; }
+
+  books.push({ id:nextBId++, title, author, isbn, genre:document.getElementById('bGenre').value, copies:parseInt(document.getElementById('bCopies').value)||1, year });
   ['bTitle','bAuthor','bISBN','bYear'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('bCopies').value=1;
   closeModal('addBook');
