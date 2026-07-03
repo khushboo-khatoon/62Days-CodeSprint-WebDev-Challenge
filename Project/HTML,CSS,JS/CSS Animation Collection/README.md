@@ -51,8 +51,7 @@ Because this environment is framework-agnostic, you do not need to download or i
 Pull down the project code locally to your environment by running the following command inside your terminal:
 
 ```bash
-git clone [https://github.com/your-username/css-animation-collection.git](https://github.com/your-username/css-animation-collection.git)
-
+git clone https://github.com/abhisek2004/62Days-CodeSprint-WebDev-Challenge/Project/HTML,CSS,JS/css-animation-collection.git
 ```
 
 ### 2. Navigate to the Directory
@@ -61,7 +60,6 @@ Enter the root folder containing the application components:
 
 ```bash
 cd css-animation-collection
-
 ```
 
 ### 3. Launch the Application
@@ -79,7 +77,6 @@ If you want to view it running from a local port layer, run the built-in HTTP se
 ```bash
 # For Python 3.x installations
 python -m http.server 8000
-
 ```
 
 Once initialized, open your web browser and navigate directly to:
