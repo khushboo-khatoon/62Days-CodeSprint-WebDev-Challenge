@@ -32,6 +32,4 @@ This project was created for learning purposes to improve frontend development s
 ## 🛠️ Tech Stack
 
 - HTML5
-
-
-## 📂 Project Structure
+- CSS3
