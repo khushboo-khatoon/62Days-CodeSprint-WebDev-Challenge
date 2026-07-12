@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Contribution Heatmap Generator</title>
+  <meta name="description" content="Visualize any GitHub user's public contribution activity with a GitHub-style heatmap calendar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="hero-badge">62Days CodeSprint · HTML/CSS/JS</div>
+      <h1>GitHub Contribution Heatmap Generator</h1>
+      <p class="hero-subtitle">
+        Enter any public GitHub username to fetch contribution data and render a
+        GitHub-style activity calendar with stats.
+      </p>
+    </header>
+
+    <section class="search-card" aria-label="Search GitHub user">
+      <form id="search-form" class="search-form">
+        <div class="input-wrap">
+          <span class="input-prefix" aria-hidden="true">@</span>
+          <input
+            type="text"
+            id="username-input"
+            name="username"
+            placeholder="Enter GitHub username"
+            autocomplete="off"
+            spellcheck="false"
+            required
+            aria-label="GitHub username"
+          />
+        </div>
+        <button type="submit" id="search-btn" class="btn-primary">
+          <span class="btn-label">Generate Heatmap</span>
+          <span class="btn-spinner hidden" aria-hidden="true"></span>
+        </button>
+      </form>
+      <p class="search-hint">Try <button type="button" class="link-btn" data-username="abhisek2004">abhisek2004</button> or <button type="button" class="link-btn" data-username="torvalds">torvalds</button></p>
+    </section>
+
+    <div id="status-message" class="status-message hidden" role="alert"></div>
+
+    <section id="loading-state" class="loading-state hidden" aria-live="polite">
+      <div class="loading-spinner"></div>
+      <p>Fetching contribution data…</p>
+    </section>
+
+    <section id="results" class="results hidden" aria-live="polite">
+      <div class="profile-card">
+        <img id="profile-avatar" class="profile-avatar" src="" alt="" width="72" height="72" />
+        <div class="profile-info">
+          <h2 id="profile-name"></h2>
+          <a id="profile-link" class="profile-username" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+        <div class="year-select-wrap">
+          <label for="year-select">Period</label>
+          <select id="year-select" aria-label="Select year or period"></select>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-label">Total Contributions</span>
+          <span id="stat-total" class="stat-value">0</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Active Days</span>
+          <span id="stat-active-days" class="stat-value">0</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Longest Streak</span>
+          <span id="stat-longest-streak" class="stat-value">0</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Current Streak</span>
+          <span id="stat-current-streak" class="stat-value">0</span>
+        </article>
+      </div>
+
+      <div class="heatmap-card">
+        <div class="heatmap-header">
+          <h3 id="heatmap-title">Contribution Activity</h3>
+          <p id="heatmap-subtitle" class="heatmap-subtitle"></p>
+        </div>
+
+        <div class="heatmap-scroll">
+          <div class="heatmap-layout">
+            <div class="day-labels" aria-hidden="true">
+              <span></span>
+              <span>Mon</span>
+              <span></span>
+              <span>Wed</span>
+              <span></span>
+              <span>Fri</span>
+              <span></span>
+            </div>
+            <div class="heatmap-main">
+              <div id="month-labels" class="month-labels" aria-hidden="true"></div>
+              <div id="heatmap-grid" class="heatmap-grid" role="img" aria-label="Contribution heatmap calendar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="heatmap-legend">
+          <span>Less</span>
+          <div class="legend-cells" aria-hidden="true">
+            <span class="cell level-0"></span>
+            <span class="cell level-1"></span>
+            <span class="cell level-2"></span>
+            <span class="cell level-3"></span>
+            <span class="cell level-4"></span>
+          </div>
+          <span>More</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Uses the
+        <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener noreferrer">GitHub REST API</a>
+        for profile data and a public contributions API for calendar data.
+        Only public activity is shown.
+      </p>
+    </footer>
+  </div>
+
+  <div id="tooltip" class="tooltip hidden" role="tooltip"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
