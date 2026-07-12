@@ -1,0 +1,96 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background: #cd726a;
+}
+
+.container {
+    align-content: center;
+}
+
+h2 {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.loader p {
+    font-size: 18px;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.main {
+    opacity: 0;
+    display: none;
+    transition: opacity 1s ease-in;
+}
+
+.grid {
+    height: 420px;
+    width: 420px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #dcd6bc;
+    border: 10px solid #dcd6bc;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+div {
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.valid {
+    height: 40px;
+    width: 40px;
+    border: 5px solid;
+    border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+}
+
+.checked {
+    height: 40px;
+    width: 40px;
+    border: 2px solid;
+    background-color: #cecab7;
+    border-color: #9c998d;
+}
+  
+.bomb {
+    height: 40px;
+    width: 40px;
+    border: 5px solid;
+    border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+}
+
+.one {
+    color: #4c7416;
+  }
+  
+  .two {
+    color: #92972f;
+  }
+  
+  .three {
+    color: #ac5a09;
+  }
+  
+  .four{
+    color: #942e24;
+  }
+  
+  #result {
+    margin-top: 5px;
+    color: #000000;
+  }
