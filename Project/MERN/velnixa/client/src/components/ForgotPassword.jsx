@@ -50,11 +50,11 @@ const ForgotPassword = () => {
   };
 
   // STEP 1
-
+const trimmedEmail = email.trim();
   const handleSendOtp = async (e) => {
     e.preventDefault();
 
-    if (!email.trim()) {
+    if (!trimmedEmail) {
       showToast(
         "Please enter your email",
         "error"
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
 
     try {
       await forgotPassword({
-        email,
+        email: trimmedEmail,
       });
 
       showToast(
@@ -121,7 +121,7 @@ const ForgotPassword = () => {
 
       try {
         await resetPassword({
-          email,
+         email: trimmedEmail,
           otp,
           newPassword,
         });
@@ -152,7 +152,7 @@ const ForgotPassword = () => {
 
       try {
         await forgotPassword({
-          email,
+         email: trimmedEmail,
         });
 
         showToast(
@@ -240,6 +240,11 @@ const ForgotPassword = () => {
                       onChange={(e) =>
                         setEmail(
                           e.target.value
+                        )
+                      }
+                      onBlur={() => 
+                        setEmail(
+                          (prev) => prev.trim()
                         )
                       }
                       placeholder="Enter your email"
