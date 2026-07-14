@@ -12,6 +12,10 @@
     <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="MIT License">
 </p>
 
+<img width="1601" height="906" alt="image" src="https://github.com/user-attachments/assets/c7d54d69-73ec-434a-abce-4f67721626fd" />
+<img width="1601" height="892" alt="image" src="https://github.com/user-attachments/assets/e3639688-86d3-4a5a-b9a2-64f5a553db76" />
+<img width="1601" height="892" alt="image" src="https://github.com/user-attachments/assets/21faf7cc-a690-42a9-a510-c0336f257445" />
+
 ---
 
 ## ✨ About
@@ -112,7 +116,7 @@ python3 -m http.server 8000
    - The sidebar and main content area are rebuilt via `resolveAndBuildContent()`
 
 4. **Content Rendering** — For each file in the current subtree:
-   - `.js`/`.php` → fetched with `fetch()`, displayed inside a `<pre><code>` block, then highlighted with `Prism.highlightElement()`
+   - `.js` → fetched with `fetch()`, displayed inside a `<pre><code>` block, then highlighted with `Prism.highlightElement()`
    - `.md` → fetched and parsed with `marked.parse()`, rendered as HTML
    - Folders → recursively expanded with accordion controls
 
