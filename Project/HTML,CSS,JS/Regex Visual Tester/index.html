@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regex Visual Tester</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">🔍</span>
+      <div>
+        <h1>Regex Visual Tester</h1>
+        <p class="tagline">Test patterns, highlight matches, and learn regex step by step</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="panel input-panel" aria-labelledby="pattern-heading">
+      <div class="panel-header">
+        <h2 id="pattern-heading">Pattern</h2>
+        <label class="sr-only" for="sampleSelect">Load sample pattern</label>
+        <select id="sampleSelect" class="select">
+          <option value="">Load sample…</option>
+          <option value="email">Email address</option>
+          <option value="phone">Phone number</option>
+          <option value="url">URL</option>
+          <option value="digits">Digits only</option>
+          <option value="words">Word characters</option>
+        </select>
+      </div>
+
+      <div class="pattern-row">
+        <span class="slash">/</span>
+        <input type="text" id="patternInput" class="pattern-input" placeholder="Enter regex pattern…" spellcheck="false" aria-label="Regex pattern" />
+        <span class="slash">/</span>
+        <div class="flags" role="group" aria-label="Regex flags">
+          <label><input type="checkbox" id="flagG" checked /> g</label>
+          <label><input type="checkbox" id="flagI" /> i</label>
+          <label><input type="checkbox" id="flagM" /> m</label>
+        </div>
+      </div>
+
+      <p id="errorMsg" class="error-msg" role="alert" hidden></p>
+
+      <label class="field-label" for="testInput">Test String</label>
+      <textarea
+        id="testInput"
+        class="test-input"
+        spellcheck="false"
+        placeholder="Type or paste text to test against your pattern…"
+        aria-label="Test string"
+      ></textarea>
+    </section>
+
+    <section class="panel result-panel" aria-labelledby="result-heading">
+      <div class="panel-header">
+        <h2 id="result-heading">Results</h2>
+        <span id="matchCount" class="match-count">0 matches</span>
+      </div>
+
+      <div class="result-block">
+        <h3>Highlighted Matches</h3>
+        <div id="highlightOutput" class="highlight-output" aria-live="polite"></div>
+      </div>
+
+      <div class="result-block">
+        <h3>Match Groups</h3>
+        <ul id="groupsList" class="groups-list"></ul>
+      </div>
+
+      <div class="result-block">
+        <h3>Explanation</h3>
+        <p id="explanation" class="explanation">Enter a pattern and test string to see a beginner-friendly explanation.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
