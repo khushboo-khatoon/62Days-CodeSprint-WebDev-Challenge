@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keyboard Shortcut Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">⌨️</span>
+      <div>
+        <h1>Keyboard Shortcut Trainer</h1>
+        <p class="tagline">Practice VS Code &amp; browser shortcuts — score points and build streaks</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="stats-bar" aria-label="Score statistics">
+      <div class="stat"><span class="stat-label">Score</span><span id="score" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">Streak</span><span id="streak" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">Accuracy</span><span id="accuracy" class="stat-value">—</span></div>
+      <div class="stat"><span class="stat-label">Round</span><span id="round" class="stat-value">0</span></div>
+    </section>
+
+    <section class="controls">
+      <label class="control-label" for="categorySelect">Category</label>
+      <select id="categorySelect" class="select">
+        <option value="vscode">VS Code</option>
+        <option value="browser">Browser</option>
+        <option value="all">All Shortcuts</option>
+      </select>
+      <button type="button" id="startBtn" class="btn btn-primary">Start Practice</button>
+      <button type="button" id="skipBtn" class="btn btn-ghost" disabled>Skip</button>
+    </section>
+
+    <section id="gameArea" class="game-area" tabindex="0" aria-label="Shortcut practice area. Click here and press keys.">
+      <p class="game-hint" id="gameHint">Click Start Practice, then press the shortcut shown below.</p>
+
+      <div id="challengeCard" class="challenge-card hidden">
+        <span id="challengeCategory" class="challenge-category">VS Code</span>
+        <h2 id="challengeAction" class="challenge-action">Save the current file</h2>
+        <p class="challenge-prompt">Press the shortcut:</p>
+        <div id="keyDisplay" class="key-display" aria-live="polite"></div>
+        <p id="expectedHint" class="expected-hint"></p>
+      </div>
+
+      <p id="feedback" class="feedback" aria-live="assertive"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
