@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1e40af" />
+  <meta name="description" content="Offline-first notes app — create, edit, and search notes without internet" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <title>Offline Notes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">📝</span>
+      <div>
+        <h1>Offline Notes</h1>
+        <p class="tagline">Works offline · Auto-saves · Installable PWA</p>
+      </div>
+    </div>
+    <div class="status" id="statusBadge" aria-live="polite">Online</div>
+  </header>
+
+  <main class="app-main">
+    <aside class="sidebar" aria-labelledby="notes-heading">
+      <div class="sidebar-top">
+        <h2 id="notes-heading">My Notes</h2>
+        <button type="button" id="newNoteBtn" class="btn btn-primary">+ New</button>
+      </div>
+
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="Search notes…" aria-label="Search notes" />
+      </div>
+
+      <ul id="notesList" class="notes-list" role="listbox" aria-label="Notes list"></ul>
+    </aside>
+
+    <section class="editor" aria-labelledby="editor-heading">
+      <div class="editor-toolbar">
+        <input type="text" id="noteTitle" class="note-title" placeholder="Note title" aria-label="Note title" />
+        <button type="button" id="deleteBtn" class="btn btn-danger" disabled>Delete</button>
+      </div>
+      <textarea
+        id="noteBody"
+        class="note-body"
+        placeholder="Start writing… (auto-saves locally)"
+        aria-label="Note content"
+        disabled
+      ></textarea>
+      <p class="editor-hint" id="editorHint">Select a note or create a new one.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
