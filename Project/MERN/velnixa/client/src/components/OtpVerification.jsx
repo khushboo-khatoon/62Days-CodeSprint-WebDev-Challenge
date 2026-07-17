@@ -9,8 +9,8 @@ const OtpVerification = ({ email, showToast, onSuccess }) => {
 
     const verifyHandler = async () => {
         try {
-
-            if (!otp.trim()) {
+              const trimmedOtp = otp.trim();
+            if (!trimmedOtp) {
                 return showToast("Please enter OTP", "error");
             }
 
@@ -18,7 +18,7 @@ const OtpVerification = ({ email, showToast, onSuccess }) => {
 
             const res = await verifyOtp({
                 email,
-                otp,
+                 otp: trimmedOtp,
             });
 
             showToast(
@@ -66,9 +66,7 @@ const OtpVerification = ({ email, showToast, onSuccess }) => {
 
     return (
         <div className="space-y-6">
-
             <div className="text-center">
-
                 <h2 className="text-xl font-semibold text-[#1F3D2B]">
                     Verify Email
                 </h2>
@@ -77,16 +75,19 @@ const OtpVerification = ({ email, showToast, onSuccess }) => {
                     OTP has been sent to
                 </p>
 
-                <p className="font-medium text-[#2F6B4F]">
-                    {email}
-                </p>
-
+                <p className="font-medium text-[#2F6B4F]">{email}</p>
             </div>
 
             <input
                 type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                pattern="[0-9]*"
+                maxLength={6}
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                onChange={e =>
+                    setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))
+                }
                 placeholder="Enter OTP"
                 className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-[#2F6B4F]"
             />
@@ -108,9 +109,8 @@ const OtpVerification = ({ email, showToast, onSuccess }) => {
             >
                 {resending ? "Sending..." : "Resend OTP"}
             </button>
-
         </div>
-    );
+    )
 };
 
 export default OtpVerification;
