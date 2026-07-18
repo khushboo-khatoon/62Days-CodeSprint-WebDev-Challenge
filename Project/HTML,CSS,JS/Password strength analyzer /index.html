@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vault — Password Strength Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0d12;
+    --panel:#11161d;
+    --panel-2:#161d26;
+    --border:#232c37;
+    --text:#e6edf3;
+    --dim:#69768a;
+    --teal:#2dd4bf;
+    --teal-dim:#0e2f2c;
+    --amber:#f2b134;
+    --amber-dim:#3a2b0d;
+    --red:#ef4444;
+    --red-dim:#3a1414;
+    --disp:'Space Grotesk', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 600px 400px at 50% 0%, rgba(45,212,191,0.06), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--disp);
+    min-height:100vh;
+    padding:40px 16px 60px;
+  }
+  .wrap{max-width:640px;margin:0 auto;}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.14em;
+    color:var(--dim);text-transform:uppercase;text-align:center;margin-bottom:8px;
+  }
+  h1{
+    font-size:28px;font-weight:600;text-align:center;margin:0 0 6px;letter-spacing:-0.01em;
+  }
+  .sub{
+    text-align:center;color:var(--dim);font-size:14px;margin:0 0 32px;
+  }
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px 24px;
+  }
+
+  /* input */
+  .input-row{
+    position:relative;display:flex;align-items:center;
+    background:var(--panel-2);border:1px solid var(--border);
+    border-radius:9px;padding:0 8px 0 16px;
+    transition:border-color 0.25s;
+  }
+  .input-row.focused{border-color:var(--teal);}
+  .input-row input{
+    flex:1;background:transparent;border:none;outline:none;
+    color:var(--text);font-family:var(--mono);font-size:16px;
+    padding:14px 8px;letter-spacing:0.02em;
+  }
+  .input-row input::placeholder{color:var(--dim);font-family:var(--disp);}
+  .eye-btn{
+    background:none;border:none;color:var(--dim);cursor:pointer;
+    font-family:var(--mono);font-size:11px;padding:8px 10px;
+    letter-spacing:0.05em;text-transform:uppercase;
+  }
+  .eye-btn:hover{color:var(--text);}
+
+  /* dial */
+  .dial-wrap{display:flex;justify-content:center;margin:30px 0 18px;}
+  .dial{position:relative;width:180px;height:180px;}
+  .dial svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .dial-tick{stroke:var(--border);stroke-width:6;}
+  .dial-fill{stroke-linecap:round;transition:stroke-dasharray 0.5s ease, stroke 0.5s ease;}
+  .dial-center{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+  }
+  .dial-label{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+  .dial-verdict{font-size:19px;font-weight:700;letter-spacing:-0.01em;}
+  .dial-bits{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:2px;}
+
+  /* crack time odometer */
+  .crack{
+    text-align:center;margin:6px 0 26px;
+  }
+  .crack-label{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+  .crack-val{
+    font-family:var(--mono);font-size:22px;font-weight:600;
+    padding:6px 14px;border-radius:6px;display:inline-block;
+    border:1px solid var(--border);background:var(--panel-2);
+  }
+
+  /* rules ledger */
+  .ledger{margin-top:8px;}
+  .ledger-title{
+    font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;
+    letter-spacing:0.1em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);
+  }
+  .rule{
+    display:flex;align-items:center;gap:10px;padding:7px 0;font-size:13.5px;
+  }
+  .rule-icon{
+    width:18px;height:18px;border-radius:5px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;font-family:var(--mono);
+  }
+  .rule-icon.pass{background:var(--teal-dim);color:var(--teal);}
+  .rule-icon.fail{background:var(--red-dim);color:var(--red);}
+  .rule.pass span.rule-text{color:var(--text);}
+  .rule.fail span.rule-text{color:var(--dim);}
+
+  /* suggestions */
+  .suggestions{
+    margin-top:18px;padding-top:16px;border-top:1px solid var(--border);
+  }
+  .suggestions.hidden{display:none;}
+  .sugg-title{
+    font-family:var(--mono);font-size:11px;color:var(--amber);text-transform:uppercase;
+    letter-spacing:0.1em;margin-bottom:8px;
+  }
+  .sugg-item{
+    font-size:13px;color:var(--dim);padding:4px 0 4px 16px;position:relative;line-height:1.5;
+  }
+  .sugg-item::before{content:'→';position:absolute;left:0;color:var(--amber);}
+
+  .empty-state{
+    text-align:center;color:var(--dim);font-family:var(--mono);font-size:12px;padding:20px 0;
+  }
+
+  footer{
+    text-align:center;font-family:var(--mono);color:var(--dim);
+    font-size:10.5px;margin-top:22px;letter-spacing:0.03em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">local analysis · nothing leaves your browser</div>
+  <h1>Vault</h1>
+  <p class="sub">Type a password to see how it holds up — and how to make it stronger.</p>
+
+  <div class="panel">
+    <div class="input-row" id="inputRow">
+      <input type="password" id="pwd" placeholder="Enter a password" autocomplete="off" spellcheck="false">
+      <button class="eye-btn" id="toggleBtn">show</button>
+    </div>
+
+    <div id="results">
+      <div class="empty-state">— dial reads zero until you start typing —</div>
+    </div>
+
+    <div class="dial-wrap" id="dialWrap" style="display:none;">
+      <div class="dial">
+        <svg viewBox="0 0 180 180">
+          <circle class="dial-tick" cx="90" cy="90" r="78" fill="none"/>
+          <circle class="dial-fill" id="dialFill" cx="90" cy="90" r="78" fill="none"
+            stroke-width="6" stroke="#2dd4bf" stroke-dasharray="0 490" />
+        </svg>
+        <div class="dial-center">
+          <div class="dial-label">strength</div>
+          <div class="dial-verdict" id="verdict">—</div>
+          <div class="dial-bits" id="bitsLabel">0 bits entropy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crack" id="crackWrap" style="display:none;">
+      <div class="crack-label">estimated time to crack (offline, fast GPU)</div>
+      <div class="crack-val" id="crackVal">instantly</div>
+    </div>
+
+    <div class="ledger" id="ledger" style="display:none;">
+      <div class="ledger-title">security rules</div>
+      <div id="ruleList"></div>
+    </div>
+
+    <div class="suggestions hidden" id="suggWrap">
+      <div class="sugg-title">suggestions</div>
+      <div id="suggList"></div>
+    </div>
+  </div>
+
+  <footer>entropy estimated from character-set size and length · not a substitute for a password manager</footer>
+</div>
+
+<script>
+const pwdInput = document.getElementById('pwd');
+const inputRow = document.getElementById('inputRow');
+const toggleBtn = document.getElementById('toggleBtn');
+const results = document.getElementById('results');
+const dialWrap = document.getElementById('dialWrap');
+const crackWrap = document.getElementById('crackWrap');
+const ledger = document.getElementById('ledger');
+const ruleList = document.getElementById('ruleList');
+const dialFill = document.getElementById('dialFill');
+const verdict = document.getElementById('verdict');
+const bitsLabel = document.getElementById('bitsLabel');
+const crackVal = document.getElementById('crackVal');
+const suggWrap = document.getElementById('suggWrap');
+const suggList = document.getElementById('suggList');
+
+const COMMON = new Set([
+  'password','123456','123456789','qwerty','abc123','password1','111111',
+  'iloveyou','admin','welcome','monkey','letmein','dragon','football',
+  'passw0rd','master','login','princess','sunshine','qwerty123','000000',
+  '123123','1234567','12345678','superman','trustno1'
+]);
+
+const CIRC = 2 * Math.PI * 78; // ~490
+
+function toggleShow(){
+  const isPw = pwdInput.type === 'password';
+  pwdInput.type = isPw ? 'text' : 'password';
+  toggleBtn.textContent = isPw ? 'hide' : 'show';
+}
+toggleBtn.addEventListener('click', toggleShow);
+
+pwdInput.addEventListener('focus', () => inputRow.classList.add('focused'));
+pwdInput.addEventListener('blur', () => inputRow.classList.remove('focused'));
+
+function poolSize(pw){
+  let size = 0;
+  if(/[a-z]/.test(pw)) size += 26;
+  if(/[A-Z]/.test(pw)) size += 26;
+  if(/[0-9]/.test(pw)) size += 10;
+  if(/[^a-zA-Z0-9]/.test(pw)) size += 32;
+  return size || 1;
+}
+
+function calcEntropy(pw){
+  const pool = poolSize(pw);
+  return pw.length * Math.log2(pool);
+}
+
+function hasSequential(pw){
+  const s = pw.toLowerCase();
+  const seqs = ['abcdefghijklmnopqrstuvwxyz','0123456789','qwertyuiop','asdfghjkl','zxcvbnm'];
+  for(const seq of seqs){
+    for(let i=0;i<=seq.length-3;i++){
+      const chunk = seq.slice(i,i+3);
+      if(s.includes(chunk)) return true;
+    }
+  }
+  return false;
+}
+
+function hasRepeats(pw){
+  return /(.)\1\1/.test(pw);
+}
+
+function crackTimeLabel(entropyBits){
+  // assume 10^10 guesses/sec (fast offline gpu attack on unsalted/weak hash)
+  const guesses = Math.pow(2, entropyBits);
+  const seconds = guesses / 1e10;
+  if(seconds < 1) return 'instantly';
+  const units = [
+    [60, 'seconds'],
+    [60, 'minutes'],
+    [24, 'hours'],
+    [365, 'days'],
+    [100, 'years'],
+    [Infinity, 'centuries']
+  ];
+  let val = seconds;
+  let label = 'seconds';
+  for(const [div, name] of units){
+    if(val < div){ label = name; break; }
+    val = val / div;
+    label = name;
+  }
+  if(label === 'centuries' && val > 1000) return '1000+ centuries';
+  return `${val < 10 ? val.toFixed(1) : Math.round(val)} ${label}`;
+}
+
+function render(){
+  const pw = pwdInput.value;
+
+  if(!pw){
+    dialWrap.style.display = 'none';
+    crackWrap.style.display = 'none';
+    ledger.style.display = 'none';
+    suggWrap.classList.add('hidden');
+    results.innerHTML = '<div class="empty-state">— dial reads zero until you start typing —</div>';
+    return;
+  }
+
+  results.innerHTML = '';
+  dialWrap.style.display = 'flex';
+  crackWrap.style.display = 'block';
+  ledger.style.display = 'block';
+
+  const entropy = calcEntropy(pw);
+  const isCommon = COMMON.has(pw.toLowerCase());
+  const effectiveEntropy = isCommon ? 0 : entropy;
+
+  const rules = [
+    { text: 'At least 12 characters', pass: pw.length >= 12 },
+    { text: 'Contains uppercase & lowercase', pass: /[a-z]/.test(pw) && /[A-Z]/.test(pw) },
+    { text: 'Contains a number', pass: /[0-9]/.test(pw) },
+    { text: 'Contains a symbol', pass: /[^a-zA-Z0-9]/.test(pw) },
+    { text: 'No obvious sequences (abc, 123, qwerty)', pass: !hasSequential(pw) },
+    { text: 'No repeated characters (aaa, 111)', pass: !hasRepeats(pw) },
+    { text: 'Not a known leaked/common password', pass: !isCommon },
+  ];
+
+  ruleList.innerHTML = rules.map(r => `
+    <div class="rule ${r.pass ? 'pass' : 'fail'}">
+      <span class="rule-icon ${r.pass ? 'pass' : 'fail'}">${r.pass ? '✓' : '✕'}</span>
+      <span class="rule-text">${r.text}</span>
+    </div>
+  `).join('');
+
+  // verdict + dial
+  let verdictText, colorVar;
+  if(isCommon || effectiveEntropy < 28){
+    verdictText = 'Weak'; colorVar = '#ef4444';
+  } else if(effectiveEntropy < 45){
+    verdictText = 'Fair'; colorVar = '#f2b134';
+  } else if(effectiveEntropy < 65){
+    verdictText = 'Strong'; colorVar = '#2dd4bf';
+  } else {
+    verdictText = 'Excellent'; colorVar = '#2dd4bf';
+  }
+  const pct = Math.max(0.03, Math.min(1, effectiveEntropy / 80));
+
+  verdict.textContent = verdictText;
+  verdict.style.color = colorVar;
+  bitsLabel.textContent = `${Math.round(effectiveEntropy)} bits entropy`;
+  dialFill.setAttribute('stroke', colorVar);
+  dialFill.setAttribute('stroke-dasharray', `${pct * CIRC} ${CIRC}`);
+
+  crackVal.textContent = isCommon ? 'instantly (known password)' : crackTimeLabel(entropy);
+  crackVal.style.color = colorVar;
+
+  // suggestions
+  const suggestions = [];
+  if(pw.length < 12) suggestions.push('Add more characters — length matters more than complexity. Aim for 12+.');
+  if(!(/[A-Z]/.test(pw) && /[a-z]/.test(pw))) suggestions.push('Mix uppercase and lowercase letters.');
+  if(!/[0-9]/.test(pw)) suggestions.push('Add at least one number.');
+  if(!/[^a-zA-Z0-9]/.test(pw)) suggestions.push('Add a symbol like !, #, or @.');
+  if(hasSequential(pw)) suggestions.push('Avoid keyboard or alphabet sequences like "abc" or "qwerty".');
+  if(hasRepeats(pw)) suggestions.push('Avoid repeating the same character three or more times.');
+  if(isCommon) suggestions.push('This exact password appears in known leak lists — never use it, anywhere.');
+  if(suggestions.length === 0) suggestions.push('Consider a passphrase of 4–5 random words for something even easier to remember and just as strong.');
+
+  suggWrap.classList.remove('hidden');
+  suggList.innerHTML = suggestions.map(s => `<div class="sugg-item">${s}</div>`).join('');
+}
+
+pwdInput.addEventListener('input', render);
+</script>
+</body>
+</html>
