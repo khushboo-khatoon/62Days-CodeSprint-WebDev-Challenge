@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Space CSS Animation Collection</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="stars-background">
+  </div>
+  <div class="shooting-stars">
+    <i></i><i></i>
+  </div>
+  <header class="site-header">
+    <h1 class="site-title">Space CSS Animation Collection</h1>
+    <p class="site-subtitle">19+ card-based space and cosmos-inspired animation snippets — each includes a live preview and a Copy CSS button.</p>
+  </header>
+
+  <main class="home-main">
+    <section class="course-grid" aria-label="Space CSS animation gallery">
+      <!-- Each card copies the CSS snippet in data-css. -->
+
+      <article class="animation-card">
+        <h2 class="animation-title">Pulsating Star</h2>
+        <div class="animation-preview preview-pulsating-star" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-pulsating-star{width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #97d2ff, #2a6396);box-shadow:0 0 15px #97d2ff;animation:starPulse 2.8s ease-in-out infinite;} @keyframes starPulse{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-8px) scale(1.08);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Asteroid Drift</h2>
+        <div class="animation-preview preview-asteroid-drift" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-asteroid-drift{width:160px;height:86px;border-radius:18px;background:linear-gradient(135deg,#8d8d8d,#5e5e5e,#3e3e3e);position:relative;overflow:hidden;} .preview-asteroid-drift:before{content:'';position:absolute;inset:-40px -60px; background:radial-gradient(circle at 20% 40%,rgba(255,255,255,.25),transparent 55%), radial-gradient(circle at 70% 30%,rgba(255,255,255,.15),transparent 60%); animation:asteroidDrift 3.2s ease-in-out infinite;} @keyframes asteroidDrift{0%{transform:translateX(-20px) translateY(0);}50%{transform:translateX(18px) translateY(10px);}100%{transform:translateX(-20px) translateY(0);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Supernova Burst</h2>
+        <div class="animation-preview preview-supernova-burst" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <button class="copy-btn" type="button" data-css=".preview-supernova-burst{width:120px;height:120px;position:relative;} .preview-supernova-burst i{position:absolute;left:50%;top:50%;width:4px;height:4px;border-radius:50%;animation:supernovaParticle 2.5s ease-out infinite;opacity:0;} .preview-supernova-burst i:nth-child(odd) { background: #fff; box-shadow: 0 0 8px #fff, 0 0 12px #00d5ff; } .preview-supernova-burst i:nth-child(even) { background: #00d5ff; box-shadow: 0 0 8px #00d5ff, 0 0 12px #00a2ff; } .preview-supernova-burst i:nth-child(1){--x: -60px; --y: -60px; animation-delay: 0s;} .preview-supernova-burst i:nth-child(2){--x: 60px; --y: -60px; animation-delay: -0.1s;} .preview-supernova-burst i:nth-child(3){--x: -60px; --y: 60px; animation-delay: -0.2s;} .preview-supernova-burst i:nth-child(4){--x: 60px; --y: 60px; animation-delay: -0.3s;} .preview-supernova-burst i:nth-child(5){--x: 0px; --y: -80px; animation-delay: -0.4s;} .preview-supernova-burst i:nth-child(6){--x: 0px; --y: 80px; animation-delay: -0.5s;} .preview-supernova-burst i:nth-child(7){--x: -80px; --y: 0px; animation-delay: -0.6s;} .preview-supernova-burst i:nth-child(8){--x: 80px; --y: 0px; animation-delay: -0.7s;} .preview-supernova-burst i:nth-child(9){--x: -40px; --y: -70px; animation-delay: -0.8s;} .preview-supernova-burst i:nth-child(10){--x: 40px; --y: -70px; animation-delay: -0.9s;} .preview-supernova-burst i:nth-child(11){--x: -40px; --y: 70px; animation-delay: -1.0s;} .preview-supernova-burst i:nth-child(12){--x: 40px; --y: 70px; animation-delay: -1.1s;} @keyframes supernovaParticle{0%{transform:translate(-50%,-50%);opacity:1;}50%{transform:translate(var(--x),var(--y));opacity:1;}100%{transform:translate(var(--x),calc(var(--y) + 60px));opacity:0;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Comet Dust</h2>
+        <div class="animation-preview preview-comet-dust" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+        <button class="copy-btn" type="button" data-css=".preview-comet-dust{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-comet-dust i{position:absolute;inset:auto;border-radius:50%;background:radial-gradient(circle at 30% 30%,#e3f2fd,rgba(255,255,255,.0) 60%),linear-gradient(135deg,#90caf9,#64b5f6,#42a5f5);filter:blur(.2px);} .preview-comet-dust i:nth-child(1){width:20px;height:20px;left:18px;top:24px;animation:dust1 2.7s ease-in-out infinite;} .preview-comet-dust i:nth-child(2){width:28px;height:28px;left:70px;top:10px;animation:dust2 3.1s ease-in-out infinite;} .preview-comet-dust i:nth-child(3){width:16px;height:16px;left:118px;top:36px;animation:dust3 2.4s ease-in-out infinite;} @keyframes dust1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(22px,18px) scale(1.12);}} @keyframes dust2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-18px,26px) scale(.95);}} @keyframes dust3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-14px,-10px) scale(1.2);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Rocket Launch</h2>
+        <div class="animation-preview preview-rocket-launch" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-rocket-launch{width:160px;height:86px;border-radius:20px;background:linear-gradient(135deg,#3f51b5,#2196f3,#03a9f4);position:relative;overflow:hidden;} .preview-rocket-launch:before{content:'';position:absolute;inset:-40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);transform:translateX(-60%) rotate(12deg);animation:launchSweep 2.2s ease-in-out infinite;} @keyframes launchSweep{0%{transform:translateX(-70%) rotate(12deg);opacity:.0;}15%{opacity:1;}50%{transform:translateX(20%) rotate(12deg);}100%{transform:translateX(70%) rotate(12deg);opacity:0;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Floating Asteroids</h2>
+        <div class="animation-preview preview-floating-asteroids" aria-hidden="true">
+          <b></b><b></b><b></b>
+        </div>
+        <button class="copy-btn" type="button" data-css=".preview-floating-asteroids{width:170px;height:92px;border-radius:18px;position:relative;overflow:hidden;background:rgba(0,0,0,.2);} .preview-floating-asteroids b{position:absolute;width:22px;height:22px;background:linear-gradient(135deg,#9e9e9e,#757575,#616161);clip-path: polygon(50% 0%, 10% 40%, 25% 100%, 75% 100%, 90% 40%);} .preview-floating-asteroids b:nth-child(1){left:18px;top:18px;animation:asteroid1 3s ease-in-out infinite;} .preview-floating-asteroids b:nth-child(2){left:60px;top:38px;animation:asteroid2 2.5s ease-in-out infinite;} .preview-floating-asteroids b:nth-child(3){left:105px;top:16px;animation:asteroid3 3.4s ease-in-out infinite;} @keyframes asteroid1{0%,100%{transform:translate(0,0) rotate(0deg);}50%{transform:translate(16px,-10px) scale(1.08) rotate(45deg);}} @keyframes asteroid2{0%,100%{transform:translate(0,0) rotate(0deg);}50%{transform:translate(-14px,-16px) scale(.95) rotate(-30deg);}} @keyframes asteroid3{0%,100%{transform:translate(0,0) rotate(0deg);}50%{transform:translate(10px,22px) scale(1.05) rotate(60deg);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Pulsar</h2>
+        <div class="animation-preview preview-pulsar" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-pulsar{width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#e1f5fe,#4fc3f7 45%,#039be5 70%);animation:pulsarBreathe 2.6s ease-in-out infinite;box-shadow:0 18px 45px rgba(3,155,229,.25);} @keyframes pulsarBreathe{0%,100%{transform:scale(.92);}50%{transform:scale(1.12);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Wormhole</h2>
+        <div class="animation-preview preview-wormhole" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-wormhole{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-wormhole:before{content:'';position:absolute;left:22px;top:-20px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:120px solid rgba(178, 223, 219, .65);filter:drop-shadow(0 0 16px rgba(128, 203, 196, .55));animation:wormholeFlash 1.8s ease-in-out infinite;} @keyframes wormholeFlash{0%,100%{transform:translateY(-6px) scaleX(.98);opacity:.55;}40%{transform:translateY(10px) scaleX(1.05);opacity:1;}70%{transform:translateY(4px) scaleX(1);opacity:.75;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Galaxy Swirl</h2>
+        <div class="animation-preview preview-galaxy-swirl" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-galaxy-swirl{width:160px;height:86px;border-radius:20px;background:linear-gradient(135deg,#7e57c2,#5e35b1,#4527a0);position:relative;overflow:hidden;} .preview-galaxy-swirl:after{content:'';position:absolute;inset:-40px; background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 45%),radial-gradient(circle at 80% 50%,rgba(255,255,255,.15),transparent 50%); animation:galaxyTilt 3.3s ease-in-out infinite;} @keyframes galaxyTilt{0%,100%{transform:translate(-10px,6px) rotate(-6deg);}50%{transform:translate(12px,-8px) rotate(9deg);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Solar Flare</h2>
+        <div class="animation-preview preview-solar-flare" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-solar-flare{width:150px;height:86px;border-radius:18px;border:2px solid rgba(255,235,59,.28);background:rgba(0,0,0,.2);animation:flarePulse 2.2s ease-in-out infinite;} .preview-solar-flare:before{content:'';position:absolute;inset:0;border-radius:18px;box-shadow:0 0 0 0 rgba(255, 235, 59,.0),0 0 0 0 rgba(255, 213, 79,.0);} @keyframes flarePulse{0%,100%{box-shadow:0 0 0 rgba(255, 235, 59,0);}50%{box-shadow:0 0 0 8px rgba(255, 235, 59, .18),0 0 18px rgba(255, 213, 79, .18);}}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Nebula Cloud</h2>
+        <div class="animation-preview preview-nebula-cloud" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-nebula-cloud{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-nebula-cloud:before{content:'';position:absolute;left:-40px;right:-40px;top:45px;height:18px;background:linear-gradient(90deg,transparent,rgba(186, 104, 200, .55),transparent);animation:nebulaWaves 2.4s ease-in-out infinite;} .preview-nebula-cloud:after{content:'';position:absolute;left:-60px;right:-60px;top:58px;height:10px;background:linear-gradient(90deg,transparent,rgba(149, 117, 205, .35),transparent);animation:nebulaWaves2 2.4s ease-in-out infinite;} @keyframes nebulaWaves{0%,100%{transform:translateX(-30px) scaleX(.8);opacity:.2;}50%{transform:translateX(30px) scaleX(1.1);opacity:1;}} @keyframes nebulaWaves2{0%,100%{transform:translateX(20px) scaleX(.9);opacity:.15;}50%{transform:translateX(-20px) scaleX(1.2);opacity:.8;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Meteor Shower</h2>
+        <div class="animation-preview preview-meteor-shower" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-meteor-shower{width:170px;height:92px;border-radius:18px;background:linear-gradient(135deg,rgba(0,0,0,.2),rgba(0,0,0,.1));position:relative;overflow:hidden;} .preview-meteor-shower:before{content:'';position:absolute;inset:-30px;background:repeating-linear-gradient(45deg,rgba(158, 158, 158, .65) 0 10px,rgba(224, 224, 224, .0) 10px 20px);animation:meteor 2.8s linear infinite;opacity:.35;} @keyframes meteor{to{transform:translateX(40px) translateY(20px);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Asteroid Impact</h2>
+        <div class="animation-preview preview-asteroid-impact" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-asteroid-impact{width:160px;height:86px;border-radius:20px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-asteroid-impact:before{content:'';position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;background:rgba(224, 224, 224, .7);transform:translate(-50%,-50%);animation:impactRipple 2.3s ease-in-out infinite;} @keyframes impactRipple{0%{box-shadow:0 0 0 0 rgba(207, 216, 220, .35),0 0 0 0 rgba(176, 190, 197, .25);}60%{box-shadow:0 0 0 26px rgba(207, 216, 220, .0),0 0 0 50px rgba(176, 190, 197, .0);}100%{box-shadow:0 0 0 0 rgba(207, 216, 220, .0),0 0 0 0 rgba(176, 190, 197, .0);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Celestial Aurora</h2>
+        <div class="animation-preview preview-celestial-aurora" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-celestial-aurora{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-celestial-aurora:before{content:'';position:absolute;left:-40%;top:-30%;width:180%;height:160%;background:linear-gradient(90deg,rgba(0, 255, 255, .0),rgba(0, 229, 255, .55),rgba(67, 244, 227, .0),rgba(34, 153, 255, .5),rgba(23, 127, 255, .0));animation:aurora 4s ease-in-out infinite;} @keyframes aurora{0%{transform:translateX(-15%);}50%{transform:translateX(15%);}100%{transform:translateX(-15%);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Planet Formation</h2>
+        <div class="animation-preview preview-planet-formation" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <button class="copy-btn" type="button" data-css=".preview-planet-formation{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-planet-formation span{position:absolute;bottom:-10px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#81d4fa,rgba(129,212,250,.0) 60%);animation:planetUp 2.6s ease-in-out infinite;opacity:.85;} .preview-planet-formation span:nth-child(1){left:28px;animation-delay:0s;} .preview-planet-formation span:nth-child(2){left:78px;animation-delay:.4s;width:20px;height:20px; background:radial-gradient(circle at 30% 30%,#ce93d8,rgba(206,147,216,.0) 60%);} .preview-planet-formation span:nth-child(3){left:128px;animation-delay:.8s;width:12px;height:12px; background:radial-gradient(circle at 30% 30%,#ef9a9a,rgba(239,154,154,.0) 60%);} @keyframes planetUp{0%{transform:translateY(0) scale(.9);}70%{transform:translateY(-92px) scale(1.05);opacity:.55;}100%{transform:translateY(-110px) scale(1.12);opacity:0;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Stardust Cloud</h2>
+        <div class="animation-preview preview-stardust-cloud" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-stardust-cloud{width:170px;height:92px;border-radius:18px;position:relative;overflow:hidden;background:rgba(0,0,0,.2);} .preview-stardust-cloud:before{content:'';position:absolute;inset:-40px;background:linear-gradient(90deg,transparent,rgba(207, 216, 220, .35),rgba(176, 190, 197, .5),rgba(144, 164, 174, .35),transparent);transform:translateX(-45%);filter:blur(2px);animation:stardustMarquee 2.7s linear infinite;} @keyframes stardustMarquee{to{transform:translateX(45%);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Rotating Planet</h2>
+        <div class="animation-preview preview-rotating-planet" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-rotating-planet{width:92px;height:92px;border-radius:50%;background:conic-gradient(from 0deg,#2196f3,#673ab7,#f44336,#2196f3);animation:planetBloom 3.2s ease-in-out infinite;filter:saturate(1.08);} @keyframes planetBloom{0%,100%{transform:rotate(0deg) scale(1);}50%{transform:rotate(180deg) scale(1.08);}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Comet Trail</h2>
+        <div class="animation-preview preview-comet-trail" aria-hidden="true"></div>
+        <button class="copy-btn" type="button" data-css=".preview-comet-trail{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;} .preview-comet-trail:before{content:'';position:absolute;left:-35%;top:50%;width:70%;height:12px;border-radius:999px;background:linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9);transform:translateY(-50%);animation:cometDash 2.1s ease-in-out infinite;} @keyframes cometDash{0%{transform:translate(-10%, -50%) scaleX(.7);opacity:.5;}50%{transform:translate(50%, -50%) scaleX(1.1);opacity:1;}100%{transform:translate(120%, -50%) scaleX(.7);opacity:.0;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="animation-card">
+        <h2 class="animation-title">Falling Stars</h2>
+        <div class="animation-preview preview-falling-stars" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </div>
+        <button class="copy-btn" type="button" data-css=".preview-falling-stars{width:170px;height:92px;border-radius:18px;background:rgba(0,0,0,.2);position:relative;overflow:hidden;perspective:400px;} .preview-falling-stars i{position:absolute;top:-20px;width:18px;height:28px;border-radius:40% 60% 30% 70% / 55% 45% 55% 45%;animation:starFall 5s linear infinite;} .preview-falling-stars i:nth-child(1){left:10%;background:linear-gradient(135deg,#fff59d,#fffde7);animation-delay:0s;animation-duration:4s;} .preview-falling-stars i:nth-child(2){left:40%;background:linear-gradient(135deg,#e3f2fd,#bbdefb);animation-delay:-1s;animation-duration:5.5s;width:14px;height:22px;} .preview-falling-stars i:nth-child(3){left:70%;background:linear-gradient(135deg,#f8bbd0,#f48fb1);animation-delay:-3s;animation-duration:4.5s;} .preview-falling-stars i:nth-child(4){left:85%;background:linear-gradient(135deg,#d1c4e9,#b39ddb);animation-delay:-4s;animation-duration:6s;width:16px;height:24px;} @keyframes starFall{0%{transform:translateY(0) rotate(0deg) rotateY(0deg) scale(1);opacity:1;} 50%{transform:translateY(60px) rotate(180deg) rotateY(90deg) scale(1.05);opacity:.8;} 100%{transform:translateY(120px) rotate(360deg) rotateY(180deg) scale(.9);opacity:0;}}">Copy CSS</button>
+        <div class="copy-hint" role="status" aria-live="polite"></div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll('.copy-btn');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const css = btn.getAttribute('data-css') || '';
+          const hint = btn.parentElement.querySelector('.copy-hint');
+          try {
+            await navigator.clipboard.writeText(css);
+            hint.textContent = 'Copied CSS!';
+            hint.classList.add('copied');
+            setTimeout(() => {
+              hint.textContent = '';
+              hint.classList.remove('copied');
+            }, 1200);
+          } catch (e) {
+            hint.textContent = 'Copy failed (clipboard permission).';
+            hint.classList.add('error');
+            setTimeout(() => {
+              hint.textContent = '';
+              hint.classList.remove('error');
+            }, 2000);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

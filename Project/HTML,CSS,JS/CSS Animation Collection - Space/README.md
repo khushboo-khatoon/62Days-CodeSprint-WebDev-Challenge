@@ -1,28 +1,29 @@
 <div align="center">
 
-  ## Forest CSS Animation Collection
-  
+  ## Space CSS Animation Collection
+
   <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
   <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
 
   ---
 
-  <img width="1669" height="910" alt="image" src="https://github.com/user-attachments/assets/bb254bfe-4811-421b-a481-4ec617b149a8" />
-  <img width="1347" height="834" alt="image" src="https://github.com/user-attachments/assets/7faf33ae-0fca-4f57-9b92-3bdeeaab9914" />
+  <img width="1702" height="912" alt="image" src="https://github.com/user-attachments/assets/3a45a1db-131d-4568-bc7c-ada1ca1f26ab" />
+  <img width="1702" height="912" alt="image" src="https://github.com/user-attachments/assets/830b704e-0fa2-4f35-909e-db29de757661" />
+  <img width="1702" height="678" alt="image" src="https://github.com/user-attachments/assets/d8b2a815-1741-470f-b08b-262015d0bb26" />
 
 </div>
 
-### A single-page collection of forest-themed CSS animations. Each animation has its own card with:
+### A single-page collection of space and cosmos-themed CSS animations. Each animation has its own card with:
+
 - a live preview
 - the animation’s CSS code
 - a **Copy CSS** button so you can paste it into your own project
 
 ---
 
-### ✨ Features
-
-- **Animated forest “waves” background** (greens/browns/golds)
-- **20+ animation cards** (each with a distinct forest-themed animation)
+### ✨ Features-
+- **Animated starry background** (reds/oranges/yellows)
+- **19+ animation cards** (each with a distinct space-themed animation)
 - **Copy to clipboard** per card (copies that animation’s CSS snippet)
 - **Typography**:
   - Headings: **Overpass Mono**
@@ -40,7 +41,7 @@ git clone <repo-url>
 
 2. Navigate to the folder:
 ```bash
-cd Forest-Css-Animation-Collection
+cd CSS-Animation-Collection---Space
 ```
 
 3. Open `index.html` in your browser.
