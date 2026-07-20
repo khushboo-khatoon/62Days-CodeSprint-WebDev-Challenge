@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Quiz App</title>
+
+  <!-- Linking our CSS file for styling -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="quiz-container">
+
+    <!-- ===== HEADER ===== -->
+    <h1>🧠 JavaScript Quiz</h1>
+
+    <!-- ===== QUESTION SCREEN ===== -->
+    <div id="question-screen">
+
+      <!-- Shows "Question 1 of 5" -->
+      <p id="question-counter">Question 1 of 5</p>
+
+      <!-- The question text goes here -->
+      <h2 id="question-text">Question goes here</h2>
+
+      <!-- The 4 answer buttons go here -->
+      <div id="options-container">
+        <!-- Buttons will be created automatically by JavaScript -->
+      </div>
+
+      <!-- Shows if the answer was right or wrong -->
+      <p id="feedback-text"></p>
+      <button id="next-btn" class="hidden">Next Question</button>
+    </div>
+
+    <!-- ===== RESULT SCREEN (hidden until quiz ends) ===== -->
+    <div id="result-screen" class="hidden">
+      <h2>Quiz Completed! 🎉</h2>
+      <p id="score-text"></p>
+      <button id="restart-btn">Play Again</button>
+    </div>
+
+  </div>
+
+  <!-- Linking our JavaScript file (put at the bottom so HTML loads first) -->
+  <script src="script.js"></script>
+</body>
+</html>

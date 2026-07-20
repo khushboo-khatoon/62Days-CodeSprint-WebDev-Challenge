@@ -1,0 +1,141 @@
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* makes width/height calculations easier */
+  }
+  
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #6a5af9, #d66efd);
+    min-height: 100vh;
+  
+    /* center the quiz box on screen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* ===============================
+     THE MAIN QUIZ BOX
+     =============================== */
+  .quiz-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  #question-counter {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  #question-text {
+    color: #222;
+    font-size: 20px;
+    margin-bottom: 20px;
+    min-height: 50px;
+  }
+  
+  /* ===============================
+     ANSWER BUTTONS
+     =============================== */
+  #options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .option-btn {
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s ease; /* smooth color change */
+    text-align: left;
+  }
+  
+  .option-btn:hover {
+    background: #eee6ff;
+    border-color: #6a5af9;
+  }
+  
+  /* Added by JavaScript after the user picks an answer */
+  .correct {
+    background: #d4f8d4 !important;
+    border-color: #34c759 !important;
+    color: #1d7a1d;
+    font-weight: bold;
+  }
+  
+  .wrong {
+    background: #ffd6d6 !important;
+    border-color: #ff3b30 !important;
+    color: #a30000;
+    font-weight: bold;
+  }
+  
+  /* Disable clicking after an answer is chosen */
+  .option-btn.disabled {
+    pointer-events: none;
+  }
+  
+  /* ===============================
+     FEEDBACK TEXT
+     =============================== */
+  #feedback-text {
+    font-weight: bold;
+    min-height: 24px;
+    margin-bottom: 15px;
+  }
+  
+  /* ===============================
+     BUTTONS (Next / Restart)
+     =============================== */
+  button#next-btn,
+  button#restart-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #6a5af9;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  button#next-btn:hover,
+  button#restart-btn:hover {
+    background: #5546e0;
+  }
+  
+  /* ===============================
+     RESULT SCREEN
+     =============================== */
+  #score-text {
+    font-size: 18px;
+    margin: 15px 0 20px;
+    color: #333;
+  }
+  
+  /* ===============================
+     UTILITY CLASS
+     =============================== */
+  .hidden {
+    display: none; /* used by JS to show/hide sections */
+  }
