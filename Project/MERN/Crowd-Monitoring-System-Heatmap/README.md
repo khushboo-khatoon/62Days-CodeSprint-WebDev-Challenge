@@ -1,12 +1,16 @@
 <div align="center">
 
 # 👥 MERN-Stack Crowd and Cluster Monitoring System
+
 ### A full-stack web application that uses a Python backend for computer vision and a MERN stack for a real-time monitoring dashboard.
+
+### > Project added by [rhalbhavi](https://github.com/rhalbhavi)
+
 <img width="800" height=auto alt="image" src="https://github.com/user-attachments/assets/04ecfdc7-9ab7-4a47-b0fd-4e12260c7fbf" />
 
 <br>
 
-### 🔗 Original repository: [https://github.com/riyahal/Crowd-Cluster-Monitoring-Heatmap](https://github.com/riyahal/Crowd-Cluster-Monitoring-Heatmap)
+### 🔗 Original repository: [https://github.com/rhalbhavi/Crowd-Cluster-Monitoring-Heatmap](https://github.com/rhalbhavi/Crowd-Cluster-Monitoring-Heatmap)
 
 </div>
 
