@@ -11,6 +11,8 @@
     <img src="https://img.shields.io/badge/GitHub%20API-2088FF?style=for-the-badge&logo=github&logoColor=white" alt="GitHub API">
 </p>
 
+<img width="1300" height="919" alt="image" src="https://github.com/user-attachments/assets/0f6ea90b-cba8-4541-98f1-975d734ec80c" />
+
 </div>
 
 ---
