@@ -2,12 +2,15 @@
 
    # 🚨 Real-Time Road Incident/Hazard Detection and SMS Alert Notification System
    ### A real-time road incident detection system using Computer Vision (MobileNet SSD + optional YOLO), AI-based incident reporting (T5), and instant SMS alerts (Twilio) via a dashboard.
+
+   ### > Project added by [rhalbhavi](https://github.com/rhalbhavi)
+   
    <img width="1000" height="auto" alt="Screenshot from 2025-11-16 13-43-00" src="https://github.com/user-attachments/assets/79ffb09b-3f4b-4fa7-9426-e50f9181bf51">
 
 </div>
 <p></p>
 
-### Original Repo link: [github.com/riyahal/Road-Incident-Detection-and-SMS-Alert-System](github.com/riyahal/Road-Incident-Detection-and-SMS-Alert-System)
+### Original Repo link: [github.com/rhalbhavi/Road-Incident-Detection-and-SMS-Alert-System](github.com/rhalbhavi/Road-Incident-Detection-and-SMS-Alert-System)
 
 ---
 
