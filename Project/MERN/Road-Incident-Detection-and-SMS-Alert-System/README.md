@@ -10,7 +10,7 @@
 </div>
 <p></p>
 
-### Original Repo link: [github.com/riyahal/Road-Incident-Detection-and-SMS-Alert-System](github.com/riyahal/Road-Incident-Detection-and-SMS-Alert-System)
+### Original Repo link: [github.com/rhalbhavi/Road-Incident-Detection-and-SMS-Alert-System](github.com/rhalbhavi/Road-Incident-Detection-and-SMS-Alert-System)
 
 ---
 
