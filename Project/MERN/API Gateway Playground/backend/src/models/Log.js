@@ -1,0 +1,1 @@
+import mongoose from 'mongoose'; export default mongoose.model('GwLog', new mongoose.Schema({user:{type:mongoose.Schema.Types.ObjectId,ref:'User'}, service:String, path:String, method:String, status:Number, policy:String, ms:Number, at:{type:Date,default:Date.now}}));

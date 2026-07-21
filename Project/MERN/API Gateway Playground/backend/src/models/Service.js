@@ -1,0 +1,3 @@
+import mongoose from 'mongoose';
+const route=new mongoose.Schema({path:String, method:{type:String,default:'GET'}, mockStatus:{type:Number,default:200}, mockBody:Object, latencyMs:{type:Number,default:0}, requireJwt:Boolean, requireApiKey:Boolean, rateLimit:{type:Number,default:0}});
+export default mongoose.model('Service', new mongoose.Schema({user:{type:mongoose.Schema.Types.ObjectId,ref:'User'}, name:String, basePath:String, routes:[route]},{timestamps:true}));
