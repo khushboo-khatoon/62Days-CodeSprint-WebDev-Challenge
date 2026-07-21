@@ -1,0 +1,1 @@
+import mongoose from 'mongoose'; export default mongoose.model('Message', new mongoose.Schema({item:{type:mongoose.Schema.Types.ObjectId,ref:'Item'}, from:{type:mongoose.Schema.Types.ObjectId,ref:'User'}, to:{type:mongoose.Schema.Types.ObjectId,ref:'User'}, body:String},{timestamps:true}));
