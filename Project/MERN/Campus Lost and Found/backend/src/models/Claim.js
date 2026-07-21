@@ -1,0 +1,1 @@
+import mongoose from 'mongoose'; export default mongoose.model('Claim', new mongoose.Schema({item:{type:mongoose.Schema.Types.ObjectId,ref:'Item'}, claimant:{type:mongoose.Schema.Types.ObjectId,ref:'User'}, note:String, status:{type:String,default:'pending'}},{timestamps:true}));
