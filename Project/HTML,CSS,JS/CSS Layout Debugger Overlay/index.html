@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Layout Debugger Overlay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="toolbar">
+      <div class="logo">
+        <strong>Layout Lens</strong>
+        <span>CSS Debugger Overlay</span>
+      </div>
+
+      <label class="toggle">
+        <input type="checkbox" id="overlayToggle" checked />
+        Box-model outlines
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="rulerToggle" checked />
+        Spacing rulers
+      </label>
+
+      <label>Demo page
+        <select id="demoSelect">
+          <option value="flex">Flex gallery</option>
+          <option value="grid">CSS Grid board</option>
+          <option value="stack">Stacked article</option>
+          <option value="empty">Empty state</option>
+        </select>
+      </label>
+
+      <label>Breakpoint
+        <select id="breakpoint">
+          <option value="100%">Full width</option>
+          <option value="375px">Mobile 375</option>
+          <option value="768px">Tablet 768</option>
+          <option value="1024px">Laptop 1024</option>
+          <option value="1280px">Desktop 1280</option>
+        </select>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="btnInspect" class="btn">Pick element</button>
+        <button type="button" id="btnExport" class="btn primary">Export PNG</button>
+        <button type="button" id="btnClear" class="btn ghost">Clear selection</button>
+      </div>
+
+      <section class="inspector" id="inspector">
+        <h2>Inspector</h2>
+        <p class="empty" id="inspectEmpty">Click an element in the preview to inspect flex/grid and box model.</p>
+        <pre id="inspectOut" hidden></pre>
+      </section>
+    </aside>
+
+    <main class="workspace">
+      <header class="workspace-head">
+        <h1>DevTools-lite layout overlay</h1>
+        <p id="status">Ready — outlines on</p>
+      </header>
+      <div class="viewport-wrap">
+        <div class="viewport" id="viewport">
+          <div class="loading" id="loading">Loading demo…</div>
+          <div id="demoRoot" class="demo-root"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div id="tooltip" class="tooltip" hidden></div>
+  <script src="script.js"></script>
+</body>
+</html>
