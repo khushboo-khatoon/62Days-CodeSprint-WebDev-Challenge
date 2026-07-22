@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Stats Viewer - Light Mode</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>✨ GitHub Profile Stats Viewer ✨</h1>
+        <div class="search-container">
+            <input type="text" id="usernameInput" placeholder="Enter a GitHub username...">
+            <button id="getStatsBtn">Get Stats</button>
+        </div>
+        <div id="profile-stats" class="profile-stats-container">
+            <!-- Profile stats will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const usernameInput = document.getElementById('usernameInput');
+        const getStatsBtn = document.getElementById('getStatsBtn');
+        const profileStatsContainer = document.getElementById('profile-stats');
+
+        getStatsBtn.addEventListener('click', fetchGitHubStats);
+        usernameInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                fetchGitHubStats();
+            }
+        });
+
+        async function fetchAllRepos(username) {
+            let allRepos = [];
+            let nextUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+
+            while (nextUrl) {
+                const response = await fetch(nextUrl);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch repos: ${response.statusText}`);
+                }
+
+                const repos = await response.json();
+                allRepos = allRepos.concat(repos);
+
+                const linkHeader = response.headers.get('Link');
+                nextUrl = null;
+                if (linkHeader) {
+                    const links = linkHeader.split(',');
+                    const nextLink = links.find(s => s.includes('rel="next"'));
+                    if (nextLink) {
+                        nextUrl = nextLink.match(/<(.*)>/)[1];
+                    }
+                }
+            }
+            return allRepos;
+        }
+
+        function calculateContributionsLastYear(contributions) {
+            if (!contributions || contributions.length === 0) {
+                return 0;
+            }
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
+            return contributions
+                .filter(c => new Date(c.date) > oneYearAgo)
+                .reduce((sum, c) => sum + c.count, 0);
+        }
+
+        function getContributionLevel(count) {
+            if (count === 0) return 0;
+            if (count <= 3) return 1;
+            if (count <= 6) return 2;
+            if (count <= 9) return 3;
+            return 4;
+        }
+
+        async function fetchGitHubStats() {
+            const username = usernameInput.value.trim();
+            if (!username) {
+                profileStatsContainer.innerHTML = '<p class="error">Please enter a username.</p>';
+                return;
+            }
+
+            profileStatsContainer.innerHTML = '<p class="loading">Loading...</p>';
+
+            try {
+                // Fetch user data and contributions in parallel
+                const [userResponse, contribResponse] = await Promise.all([
+                    fetch(`https://api.github.com/users/${username}`),
+                    fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=all`)
+                ]);
+
+                if (!userResponse.ok) {
+                    if (userResponse.status === 404) {
+                        throw new Error('User not found.');
+                    } else {
+                        throw new Error(`An error occurred: ${userResponse.statusText}`);
+                    }
+                }
+
+                const userData = await userResponse.json();
+
+                // Fetch all repos to calculate stars
+                const repos = userData.public_repos > 0 ? await fetchAllRepos(username) : [];
+                const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+
+                // Calculate contributions from the past year
+                let contribData = null;
+                let totalContributions = 0;
+                if (contribResponse.ok) {
+                    contribData = await contribResponse.json();
+                    if (contribData && contribData.contributions) {
+                        totalContributions = calculateContributionsLastYear(contribData.contributions);
+                    }
+                } else {
+                    console.warn(`Could not fetch contribution data: ${contribResponse.statusText}`);
+                }
+
+                displayProfileStats(userData, totalStars, totalContributions, contribData);
+
+            } catch (error) {
+                profileStatsContainer.innerHTML = `<p class="error">${error.message}</p>`;
+            }
+        }
+
+        function displayProfileStats(data, totalStars, totalContributions, contribData) {
+            const {
+                avatar_url,
+                name,
+                login,
+                bio,
+                followers,
+                following,
+                public_repos,
+                public_gists,
+                html_url
+            } = data;
+
+            profileStatsContainer.innerHTML = `
+                <div class="profile-header">
+                    <img src="${avatar_url}" alt="Profile picture for ${login}" class="avatar">
+                    <div class="profile-info">
+                        <h2>${name || login}</h2>
+                        ${bio ? `<p>${bio}</p>` : ''}
+                        <a href="${html_url}" target="_blank">View Profile on GitHub</a>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>Followers</h3>
+                        <p>${followers}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Following</h3>
+                        <p>${following}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Public Repos</h3>
+                        <p>${public_repos}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Public Gists</h3>
+                        <p>${public_gists}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Total Stars</h3>
+                        <p>${totalStars.toLocaleString()}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Contributions (Past Year)</h3>
+                        <p>${totalContributions.toLocaleString()}</p>
+                    </div>
+                </div>
+            `;
+
+            // Display contribution graph if data is available
+            if (contribData && contribData.contributions && contribData.contributions.length > 0) {
+                const graphElement = document.createElement('div');
+                graphElement.className = 'contribution-graph';
+                profileStatsContainer.appendChild(graphElement);
+                displayContributionGraph(contribData.contributions, graphElement);
+            }
+
+            // Generate Markdown
+            const markdown = `### GitHub Stats for ${login}\n\n| Followers | Following | Public Repos | Public Gists | Total Stars | Contributions (Past Year) |\n|---|---|---|---|---|---|\n| ${followers.toLocaleString()} | ${following.toLocaleString()} | ${public_repos.toLocaleString()} | ${public_gists.toLocaleString()} | ${totalStars.toLocaleString()} | ${totalContributions.toLocaleString()} |`;
+
+            // Don't show copy button if there's nothing to show
+            if (!followers && !following && !public_repos && !public_gists && !totalStars && !totalContributions) {
+                return;
+            }
+            // Create and append the copy button
+            const copyButtonContainer = document.createElement('div');
+            copyButtonContainer.classList.add('copy-container');
+
+            const copyBtn = document.createElement('button');
+            copyBtn.id = 'copyMarkdownBtn';
+            copyBtn.textContent = 'Copy as Markdown';
+            copyButtonContainer.appendChild(copyBtn);
+
+            profileStatsContainer.appendChild(copyButtonContainer);
+
+            // Add event listener for the copy button
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(markdown).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    copyBtn.style.borderColor = '#238636';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy as Markdown';
+                        copyBtn.style.borderColor = '#30363d';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy markdown: ', err);
+                    copyBtn.textContent = 'Error';
+                });
+            });
+        }
+
+        function displayContributionGraph(contributions, containerElement) {
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+            oneYearAgo.setDate(oneYearAgo.getDate() + 1); // Start from the day after one year ago
+            oneYearAgo.setHours(0, 0, 0, 0);
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Create a map of contributions by date for quick lookup
+            const contribsMap = new Map();
+            for (const c of contributions) {
+                contribsMap.set(new Date(c.date).toDateString(), c.count);
+            }
+
+            let graphHTML = '<h3>Contribution Graph (Last Year)</h3><div class="graph-container">';
+
+            // Pad the beginning of the graph to the correct day of the week
+            const dayOfWeek = oneYearAgo.getDay(); // 0=Sun, 1=Mon, ...
+            for (let i = 0; i < dayOfWeek; i++) {
+                graphHTML += '<div class="graph-cell-pad"></div>'; // Empty cells for padding
+            }
+
+            // Iterate from one year ago to today
+            for (let d = new Date(oneYearAgo); d <= today; d.setDate(d.getDate() + 1)) {
+                const dateString = d.toDateString();
+                const count = contribsMap.get(dateString) || 0;
+                const level = getContributionLevel(count);
+                const dateFormatted = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                graphHTML += `
+                    <div class="graph-cell" data-level="${level}">
+                        <span class="tooltip">${count} contributions on ${dateFormatted}</span>
+                    </div>
+                `;
+            }
+
+            graphHTML += '</div>';
+            containerElement.innerHTML = graphHTML;
+        }
+    </script>
+
+</body>
+</html>
